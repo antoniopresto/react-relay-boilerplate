@@ -1,0 +1,131 @@
+/* linear-gradient */
+.linear-gradient( @dir: top, @start-color: #eee, @end-color: #aaa ) {
+    background: -webkit-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+    background: -moz-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+    background: -ms-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+    background: -o-linear-gradient(@dir, @start-color 0%, @end-color 100%);
+    background: linear-gradient(@dir, @start-color 0%, @end-color 100%);
+    .linear-gradient-ie( @dir, @start-color, @end-color);
+}
+.linear-gradient-multi( ... ) {
+    background-image: -webkit-linear-gradient(@arguments);
+    background-image: -moz-linear-gradient(@arguments);
+    background-image: -ms-linear-gradient(@arguments);
+    background-image: -o-linear-gradient(@arguments);
+    background-image: linear-gradient(@arguments);
+}
+.linear-gradient-ie( @dir, @start-color, @end-color) when (@dir = top),
+not ( isstring(@dir) ) and ( @dir >= 225 ) and ( @dir < 315 ),
+not ( isstring(@dir) ) and ( @dir >= -135 ) and ( @dir < -45 ) {
+    .linear-gradient-ie-filter(@start-color, @end-color, 0);
+}
+.linear-gradient-ie( @dir, @start-color, @end-color) when (@dir = right),
+not ( isstring(@dir) ) and ( @dir >= 135 ) and ( @dir < 225 ),
+not ( isstring(@dir) ) and ( @dir >= -225 ) and ( @dir < -135 ) {
+    .linear-gradient-ie-filter(@end-color, @start-color, 1);
+}
+.linear-gradient-ie( @dir, @start-color, @end-color) when (@dir = bottom),
+not ( isstring(@dir) ) and ( @dir >= 45 ) and ( @dir < 135 ),
+not ( isstring(@dir) ) and ( @dir >= -315 ) and ( @dir < -225 ) {
+    .linear-gradient-ie-filter(@end-color, @start-color, 0);
+}
+.linear-gradient-ie( @dir, @start-color, @end-color) when (@dir = left),
+not ( isstring(@dir) ) and ( @dir >= 315 ) and ( @dir < 360 ),
+not ( isstring(@dir) ) and ( @dir >= -45 ) and ( @dir < 45 ),
+not ( isstring(@dir) ) and ( @dir < -315 ) and ( @dir >= -360 ) {
+    .linear-gradient-ie-filter(@start-color, @end-color, 1);
+}
+.linear-gradient-ie-filter(@start: #eee, @end: #aaa, @type: 1) {
+    @c-start: argb(@start);
+    @c-end: argb(@end);
+    filter:~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{c-start}', endColorstr='@{c-end}', GradientType=@{type})";
+    -ms-filter: ~"progid:DXImageTransform.Microsoft.gradient(startColorstr='@{c-start}',endColorstr='@{c-end}',GradientType=@{type})";
+}
+.fade-gradient(@inicio, @fim){
+    background: -moz-linear-gradient(left, fade(@inicio, 0%) 0%, @fim 100%);
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%, @inicio), color-stop(100%, @fim));
+    background: -webkit-linear-gradient(left, fade(@inicio, 0%) 0%, @fim 100%);
+    background: -o-linear-gradient(left, fade(@inicio, 0%) 0%, @fim 100%);
+    background: -ms-linear-gradient(left, fade(@inicio, 0%) 0%, @fim 100%);
+    background: linear-gradient(to right, fade(@inicio, 0%) 0%, @fim 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient( startColorstr=darken(@inicio, 0%), endColorstr=darken(@fim, 0%),GradientType=1 );
+}
+
+/* Shadow */
+.BoxShadowHelper(@level: 1) {
+    & when (@level = 1) {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.1);
+    }
+    & when (@level = 2) {
+        box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+    & when (@level = 3) {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    & when (@level = 4) {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
+    & when (@level = 5) {
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+}
+
+/* Base colors */
+@orange: #e46402;
+@red: #f63e2f;
+@cinza: #3b3b3b;
+@cinzaClaro: #ccc;
+@gelo: #e1e8ed;
+@azul: #0088fe;
+@verde: #81ce8c;
+
+/* Backgrounds */
+@fundo: lighten(@fundo2, 5%);
+@fundo2: #f9f9f9;
+@fundo3: darken(@fundo, 10%);
+
+/* Font */
+@fontColor: #333;
+@linkColor: @azul;
+@linkHover: darken(@linkColor, 20%);
+@contentColor: #333;
+
+/* Submenu */
+@segmentBgColor: @fundo2;
+@segmentLinkColor: darken(@fundo, 40%);
+@submenuBgColor: darken(@fundo2, 1%);
+@submenuActiveLinkColor: @azul;
+@submenuLinkColor: @segmentLinkColor;
+@segmentActiveColor: @azul;
+
+/* Topo */
+@topoMenuColor: white;
+@topoMenuBgColor: @orange;
+
+/* NewsFeed */
+@feedItemColor: blue;
+@feedTimeColor: lighten(@fontColor, 20%);
+@feedItemBg: white;
+.gradientOrange {
+    background: #f9c431;
+    background: -moz-linear-gradient(-45deg, #f9c431 0%, #ef5b00 85%);
+    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#f9c431), color-stop(85%,#ef5b00));
+    background: -webkit-linear-gradient(-45deg, #f9c431 0%,#ef5b00 85%);
+    background: -o-linear-gradient(-45deg, #f9c431 0%,#ef5b00 85%);
+    background: -ms-linear-gradient(-45deg, #f9c431 0%,#ef5b00 85%);
+    background: linear-gradient(135deg, #f9c431 0%,#ef5b00 85%);
+    filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9c431', endColorstr='#ef5b00',GradientType=1 );
+}
+::selection {
+    background-color: @orange;
+    color: white;
+}
+.fundo {
+    background-color: @fundo;
+}
+.orangeb {
+    background-color: @orange;
+}
+.redb {
+    background-color: @red;
+}
