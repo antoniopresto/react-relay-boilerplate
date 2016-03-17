@@ -44,10 +44,10 @@ module.exports = {
     //
     // hooking into 'js' extension require()s isn't the best solution
     // and I'm leaving this comment here in case anyone finds a better idea.
-    /*
+
     bootstrap: {
       extension: 'js',
-      //include: ['./src/theme/bootstrap.config.js'],
+      include: ['./src/theme/bootstrap.config.js'],
       filter: function(module, regex, options, log) {
         function is_bootstrap_style(name) {
           return name.indexOf('./src/theme/bootstrap.config.js') >= 0;
@@ -62,7 +62,6 @@ module.exports = {
       path: WebpackIsomorphicToolsPlugin.style_loader_path_extractor,
       parser: WebpackIsomorphicToolsPlugin.css_loader_parser
     },
-    */
     style_modules: {
       extensions: ['less','scss'],
       filter: function(module, regex, options, log) {
